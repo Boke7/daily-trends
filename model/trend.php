@@ -113,31 +113,25 @@ class trend
     {
         try
         {
-            //Primero verifico que no exista la noticia
 
-            $existe = $this->Verificar($data->title);
-
-            if(!$existe) {
-
-                $sql = "UPDATE noticias SET 
+            $sql = "UPDATE noticias SET 
                             title          = ?, 
                             source        = ?,
                             body        = ?,
                             publisher            = ?
                         WHERE id = ?";
 
-                $this->pdo->prepare($sql)
-                    ->execute(
-                        array(
-                            $data->title,
-                            $data->source,
-                            $data->body,
-                            $data->publisher
-                        )
-                    );
-            }else{
-                die('Esta noticia ya existe');
-            }
+            $this->pdo->prepare($sql)
+                ->execute(
+                    array(
+                        $data->title,
+                        $data->source,
+                        $data->body,
+                        $data->publisher,
+                        $data->id
+                    )
+                );
+
         } catch (Exception $e)
         {
             die($e->getMessage());

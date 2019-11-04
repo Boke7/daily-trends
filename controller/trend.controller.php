@@ -70,7 +70,7 @@ class TrendController{
         $noticia = new Trend();
 
         $noticia->id = $_REQUEST['id'];
-        $noticia->title = $_REQUEST['title'];
+        $noticia->title = str_replace(["'",'""'], "",$_REQUEST['title']);
         $noticia->body = $_REQUEST['body'];
         $noticia->source = $_REQUEST['source'];
         $noticia->publisher = $_REQUEST['publisher'];
